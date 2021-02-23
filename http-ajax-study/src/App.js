@@ -8,7 +8,8 @@ import './App.css'
 class App extends Component {
   render() {
     return (
-      <BrowserRouter>
+      <BrowserRouter basename="/">
+      {/* <BrowserRouter basename="/my-app"> */}
         <div className="App">
           <Blog />
         </div>
