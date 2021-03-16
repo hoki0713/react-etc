@@ -1,7 +1,13 @@
 import * as actionTypes from './actionTypes'
 
+/**
+ * Action Creators
+ *   -> Can run Asynchronous Code
+ *   -> Shouldn't prepare the state update too much
+ */
 
 export const saveResult = (res) => {
+  // const updatedResult = res * 2
   return {
     type: actionTypes.STORE_RESULT,
     result: res

@@ -1,5 +1,11 @@
 import * as actionTypes from '../actions/actionTypes'
 
+/**
+ * Reducer
+ *   -> Pure, Synchronous Code Only!
+ *   -> Core Redux Concept: Reducers update the State
+ */
+
 const initialState = {
 	results: [],
 }
@@ -7,6 +13,7 @@ const initialState = {
 const reducer = (state = initialState, action) => {
 	switch (action.type) {
 		case actionTypes.STORE_RESULT:
+			// Change Data
 			return {
 				...state,
 				results: state.results.concat({ id: new Date(), value: action.result }),
