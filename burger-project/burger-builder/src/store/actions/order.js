@@ -11,7 +11,7 @@ export const purchaseBurgerSuccess = (id, orderData) => {
 
 export const purchaseBurgerFail = (error) => {
   return {
-    type: actionTypes.PURCHASE_BURGER_FAILED,
+    type: actionTypes.PURCHASE_BURGER_FAIL,
     error: error
   }
 }
