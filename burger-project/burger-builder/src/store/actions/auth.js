@@ -1,5 +1,6 @@
 import axios from 'axios'
 
+import { FIREBASE_API_KEY } from '../../../.env'
 import * as actionTypes from './actionTypes'
 
 export const authStart = () => {
@@ -31,10 +32,10 @@ export const auth = (email, password, isSignup) => {
       password: password,
       returnSecureToken: true
     }
-    let url = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyARbXTkyxW6qSKspElcLJHcwdcDRl39QJM'
+    let url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${FIREBASE_API_KEY}`
 
     if(!isSignup) {
-      url = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyARbXTkyxW6qSKspElcLJHcwdcDRl39QJM'
+      url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${FIREBASE_API_KEY}`
     }
 
     axios
