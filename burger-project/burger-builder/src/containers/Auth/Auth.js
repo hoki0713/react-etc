@@ -20,7 +20,7 @@ class Auth extends Component {
 					required: true,
           isEmail: true
 				},
-				valid: true,
+				valid: false,
 				touched: false,
 			},
       password: {
@@ -34,7 +34,7 @@ class Auth extends Component {
 					required: true,
           minLength: 6
 				},
-				valid: true,
+				valid: false,
 				touched: false,
 			},
     }
@@ -77,7 +77,7 @@ class Auth extends Component {
       [controlName]: {
         ...this.state.controls[controlName],
         value: event.target.value,
-        vaild: this.checkValidity(event.target.value, this.state.controls[controlName].validation),
+        valid: this.checkValidity(event.target.value, this.state.controls[controlName].validation),
         touched: true
       }
     }
