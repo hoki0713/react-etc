@@ -22,6 +22,8 @@
     "case-sensitive-paths-webpack-plugin": "2.3.0",
     "css-loader": "4.3.0",
     "dotenv-expand": "5.1.0",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.6",
     "eslint": "^7.11.0",
     "eslint-config-react-app": "^6.0.0",
     "eslint-plugin-flowtype": "^5.2.0",
@@ -37,7 +39,6 @@
     "html-webpack-plugin": "4.5.0",
     "identity-obj-proxy": "3.0.0",
     "jest": "26.6.0",
-    "jest-circus": "26.6.0",
     "jest-resolve": "26.6.0",
     "jest-watch-typeahead": "0.6.1",
     "mini-css-extract-plugin": "0.11.3",
@@ -57,6 +58,7 @@
     "react-redux": "7.2.2",
     "react-refresh": "^0.8.3",
     "react-router-dom": "5.2.0",
+    "react-test-renderer": "^17.0.2",
     "redux": "4.0.5",
     "redux-thunk": "^2.3.0",
     "resolve": "1.18.1",
@@ -97,6 +99,7 @@
     ]
   },
   "jest": {
+    "verbose": true,
     "roots": [
       "<rootDir>/src"
     ],
@@ -115,7 +118,7 @@
       "<rootDir>/src/**/*.{spec,test}.{js,jsx,ts,tsx}"
     ],
     "testEnvironment": "jsdom",
-    "testRunner": "/Users/hjkim/React-Study/burger-project/burger-builder/node_modules/jest-circus/runner.js",
+    "testRunner": "<rootDir>/node_modules/jest-circus/runner.js",
     "transform": {
       "^.+\\.(js|jsx|mjs|cjs|ts|tsx)$": "<rootDir>/node_modules/babel-jest",
       "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
@@ -152,5 +155,8 @@
     "presets": [
       "react-app"
     ]
+  },
+  "devDependencies": {
+    "jest-circus": "^26.6.0"
   }
 }
