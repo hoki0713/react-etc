@@ -1,8 +1,16 @@
 import React from 'react'
 
+import IngredientForm from './IngredientForm'
+import Search from './Search'
+
 const Ingredients = (props) => {
   return (
-    <div>Ingredients</div>
+    <div className="App">
+      <IngredientForm />
+      <section>
+        <Search />
+      </section>
+    </div>
   )
 }
 
