@@ -35,7 +35,11 @@ const Ingredients = (props) => {
   }
 
   const removeIngredientHandler = (igId) => {
-    setUserIngredients(prevIngs => prevIngs.filter(ig => ig.id !== igId))
+    fetch(`https://react-hooks-update-3b865-default-rtdb.firebaseio.com/ingredients/${igId}.json`,{
+      method: 'DELETE'
+    }).then(response => {
+      setUserIngredients(prevIngs => prevIngs.filter(ig => ig.id !== igId))
+    })
   }
 
   return (
