@@ -1,13 +1,21 @@
 import { useReducer, useCallback } from 'react'
 
+const initialState = {
+  loading: false, 
+  error: null,
+  data: null,
+  extra: null,
+  identifier: null
+}
+
 const httpReducer = (curHttpState, action) => {
   switch (action.type) {
     case 'CLEAR':
-      return { ...curHttpState, error: null }
+      return initialState
     case 'SEND_REQUEST':
-      return { loading: true, error: null, data: null }
+      return { loading: true, error: null, data: null, extra: null, identifier: action.identifier }
     case 'RESPONSE':
-      return { ...curHttpState, loading: false, data: action.responseData }
+      return { ...curHttpState, loading: false, data: action.data, extra: action.extra }
     case 'ERROR':
       return { loading: false, error: action.errorData }
     default:
@@ -16,14 +24,12 @@ const httpReducer = (curHttpState, action) => {
 }
 
 const useHttp = () => {
-  const [httpState, dispatchHttp] = useReducer(httpReducer, {
-    loading: false, 
-    error: null,
-    data: null
-  })
+  const [httpState, dispatchHttp] = useReducer(httpReducer, initialState)
 
-  const sendRequest = useCallback((url, method, body) => {
-    dispatchHttp({ type: 'SEND_REQUEST' })
+  const clear = useCallback(() => dispatchHttp({ type: 'CLEAR' }), [])
+
+  const sendRequest = useCallback((url, method, body, reqExtra, reqIdentifier) => {
+    dispatchHttp({ type: 'SEND_REQUEST', identifier: reqIdentifier })
     fetch(
       url,
       {
@@ -36,7 +42,11 @@ const useHttp = () => {
     ).then(response => {
       return response.json()
     }).then(responseData => {
-      dispatchHttp({ type: 'RESPONSE', data: responseData})
+      dispatchHttp({ 
+        type: 'RESPONSE', 
+        data: responseData,
+        extra: reqExtra
+      })
     }).catch(error => {
       dispatchHttp({ type: 'ERROR', errorData: error.message })
     })
@@ -46,7 +56,10 @@ const useHttp = () => {
     isLoading: httpState.loading,
     data: httpState.data,
     error: httpState.error,
-    sendRequest: sendRequest
+    sendRequest: sendRequest,
+    reqExtra: httpState.extra,
+    reqIdentifier: httpState.identifier,
+    clear: clear
   }
 }
 
